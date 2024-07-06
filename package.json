@@ -11,6 +11,14 @@
 	],
 	"author": "Walaff Fernandes",
 	"license": "ISC",
+  "homepage": "https://github.com/Pyxlab/cms_sign#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pyxlab/cms_sign.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pyxlab/cms_sign/issues"
+  },
 	"peerDependencies": {
 		"node-forge": "^1.2.1"
 	},
