@@ -1,5 +1,11 @@
 # @pyxlab/cms_sign
 
+<br />
+
+[![gh-workflow-image]][gh-workflow-url] [![npm-image]][npm-url] ![][typescript-image] [![license-image]][license-url]
+
+## Introduction
+
 The `@pyxlab/cms_sign` package is a robust solution for creating and managing digital signatures in your projects. With an intuitive and flexible API, this package allows for the generation of digital signatures, verification of existing signatures, and manipulation of signature-related data in a secure and efficient manner.
 
 ## Features
@@ -22,6 +28,7 @@ Or using yarn:
 ```sh
 yarn add @pyxlab/cms_sign
 ```
+
 ## Usage
 
 ### Creating a Digital Signature
@@ -99,3 +106,15 @@ Distributed under the ISC License. See [LICENSE](/LICENSE) for more information.
 <div align="center">
   <sub>Built with ❤︎ by <a href="https://github.com/lncitador">Walaff Fernandes</a>
 </div>
+
+
+[gh-workflow-image]: https://img.shields.io/github/actions/workflow/status/pyxlab/cms_sign/checks.yml?style=for-the-badge
+[gh-workflow-url]: https://github.com/pyxlab/cms_sign/actions/workflows/checks.yml "Github action"
+
+[npm-image]: https://img.shields.io/npm/v/@pyxlab/cms_sign/latest.svg?style=for-the-badge&logo=npm
+[npm-url]: https://www.npmjs.com/package/@pyxlab/cms_sign/v/latest "npm"
+
+[typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
+
+[license-url]: LICENSE.md
+[license-image]: https://img.shields.io/github/license/pyxlab/cms_sign?style=for-the-badge
