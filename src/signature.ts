@@ -1,5 +1,5 @@
-import { resolve } from "node:path";
 import { access, mkdir, rm, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import AdmZip from "adm-zip";
 import errors from "./errors/index.js";
 
@@ -118,7 +118,7 @@ export class SignatureEntityBuilder {
         const directory = resolve(
             __dirname,
             filepath,
-            `${basename}-${Date.now()}`
+            `${basename}-${Date.now()}`,
         );
 
         try {
@@ -138,7 +138,7 @@ export class SignatureEntity implements ISignatureEntity {
 
     constructor(
         public readonly data: Buffer,
-        public readonly signature: Buffer
+        public readonly signature: Buffer,
     ) {
         this.#builder = new SignatureEntityBuilder(data, signature);
     }
