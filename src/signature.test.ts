@@ -80,7 +80,7 @@ describe("SignatureEntity", () => {
             );
 
             try {
-                await signatureEntity.builder.setOutputPath("test").build();
+                await signatureEntity.builder().setOutputPath("test").build();
             } catch (error) {
                 expect(error).toBeInstanceOf(FilenameNotDefinedError);
             }
@@ -95,7 +95,7 @@ describe("SignatureEntity", () => {
             );
 
             try {
-                await signatureEntity.builder.setFilename("test").build();
+                await signatureEntity.builder().setFilename("test").build();
             } catch (error) {
                 expect(error).toBeInstanceOf(FilepathNotDefinedError);
             }
@@ -111,7 +111,8 @@ describe("SignatureEntity", () => {
 
             const directory = "../tmp/signatures";
             const filename = "test.txt";
-            const result = await signatureEntity.builder
+            const result = await signatureEntity
+                .builder()
                 .setOutputPath(directory)
                 .setFilename(filename)
                 .build();
@@ -131,7 +132,8 @@ describe("SignatureEntity", () => {
 
             const directory = "../tmp/signatures";
             const filename = "test-compression.txt";
-            const result = await signatureEntity.builder
+            const result = await signatureEntity
+                .builder()
                 .setOutputPath(directory)
                 .setFilename(filename)
                 .setCompression(true)

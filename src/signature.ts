@@ -6,7 +6,7 @@ import errors from "./errors/index.js";
 export interface ISignatureEntity {
     readonly data: Buffer;
     readonly signature: Buffer;
-    get builder(): SignatureEntityBuilder;
+    builder(): SignatureEntityBuilder;
 }
 
 export class SignatureEntityBuilder {
@@ -106,7 +106,7 @@ export class SignatureEntity implements ISignatureEntity {
         this.#builder = new SignatureEntityBuilder(data, signature);
     }
 
-    public get builder(): SignatureEntityBuilder {
+    public builder(): SignatureEntityBuilder {
         return this.#builder;
     }
 }
