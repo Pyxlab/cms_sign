@@ -83,8 +83,6 @@ export class SignatureEntityBuilder {
         const filename = `${basename}.${extension}`;
         const directory = await this.prepareFolder(this.#filePath, basename);
 
-        console.log({ directory });
-
         const txt = resolve(directory, filename);
         const p7s = resolve(directory, filename.concat(".p7s"));
 
@@ -118,7 +116,7 @@ export class SignatureEntityBuilder {
         const directory = resolve(
             __dirname,
             filepath,
-            `${basename}-${Date.now()}`,
+            `${basename}-${Date.now()}`
         );
 
         try {
@@ -138,7 +136,7 @@ export class SignatureEntity implements ISignatureEntity {
 
     constructor(
         public readonly data: Buffer,
-        public readonly signature: Buffer,
+        public readonly signature: Buffer
     ) {
         this.#builder = new SignatureEntityBuilder(data, signature);
     }

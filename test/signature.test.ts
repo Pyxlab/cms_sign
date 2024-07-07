@@ -4,6 +4,7 @@ import { SignatureEntity, SignatureEntityBuilder } from "../src/signature.js";
 import { DataNotProvidedError } from "../src/errors/data_not_provided.error.js";
 import { FilenameNotDefinedError } from "../src/errors/filename_not_defined.error.js";
 import { FilepathNotDefinedError } from "../src/errors/filepath_not_defined.error.js";
+import { SignatureNotProvidedError } from "../src/errors/signature_not_provided.error.js";
 
 describe("SignatureEntity", () => {
     describe("constructor", () => {
@@ -39,7 +40,8 @@ describe("SignatureEntity", () => {
                     undefined!
                 );
             } catch (error) {
-                expect(error).toBeInstanceOf(DataNotProvidedError);
+                console.log(error);
+                expect(error).toBeInstanceOf(SignatureNotProvidedError);
             }
         });
 
@@ -51,7 +53,7 @@ describe("SignatureEntity", () => {
                 testSignature
             );
 
-            const builder = signatureEntity.builder;
+            const builder = signatureEntity.builder();
 
             expect(builder).toBeInstanceOf(SignatureEntityBuilder);
         });
@@ -66,7 +68,7 @@ describe("SignatureEntity", () => {
                 testSignature
             );
 
-            const builder = signatureEntity.builder;
+            const builder = signatureEntity.builder();
 
             expect(builder).toBeInstanceOf(SignatureEntityBuilder);
         });
