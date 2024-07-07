@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { SignatureProvider } from "./provider.js";
+import { SignatureProvider } from "../src/provider.js";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 

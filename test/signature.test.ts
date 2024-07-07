@@ -1,9 +1,9 @@
 import { rm, rmdir } from "node:fs/promises";
 import { describe, it, expect } from "vitest";
-import { SignatureEntity, SignatureEntityBuilder } from "./signature.js";
-import { DataNotProvidedError } from "./errors/data_not_provided.error.js";
-import { FilenameNotDefinedError } from "./errors/filename_not_defined.error.js";
-import { FilepathNotDefinedError } from "./errors/filepath_not_defined.error.js";
+import { SignatureEntity, SignatureEntityBuilder } from "../src/signature.js";
+import { DataNotProvidedError } from "../src/errors/data_not_provided.error.js";
+import { FilenameNotDefinedError } from "../src/errors/filename_not_defined.error.js";
+import { FilepathNotDefinedError } from "../src/errors/filepath_not_defined.error.js";
 
 describe("SignatureEntity", () => {
     describe("constructor", () => {
