@@ -116,7 +116,7 @@ export class SignatureEntityBuilder {
         const directory = resolve(
             __dirname,
             filepath,
-            `${basename}-${Date.now()}`
+            `${basename}-${Date.now()}`,
         );
 
         try {
@@ -136,7 +136,7 @@ export class SignatureEntity implements ISignatureEntity {
 
     constructor(
         public readonly data: Buffer,
-        public readonly signature: Buffer
+        public readonly signature: Buffer,
     ) {
         this.#builder = new SignatureEntityBuilder(data, signature);
     }
