@@ -108,8 +108,8 @@ Distributed under the ISC License. See [LICENSE](/LICENSE) for more information.
 </div>
 
 
-[gh-workflow-image]: https://img.shields.io/github/actions/workflow/status/pyxlab/cms_sign/checks.yml?style=for-the-badge
-[gh-workflow-url]: https://github.com/pyxlab/cms_sign/actions/workflows/checks.yml "Github action"
+[gh-workflow-image]: https://img.shields.io/github/actions/workflow/status/pyxlab/cms_sign/checks.yaml?style=for-the-badge
+[gh-workflow-url]: https://github.com/pyxlab/cms_sign/actions/workflows/checks.yaml "Github action"
 
 [npm-image]: https://img.shields.io/npm/v/@pyxlab/cms_sign/latest.svg?style=for-the-badge&logo=npm
 [npm-url]: https://www.npmjs.com/package/@pyxlab/cms_sign/v/latest "npm"
