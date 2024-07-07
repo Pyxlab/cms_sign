@@ -1,32 +1,37 @@
 {
-	"name": "@pyxlab/cms_sign",
-	"version": "1.0.0",
-	"description": "",
-	"scripts": {},
-	"keywords": [
-		"typescript",
-		"node-forge",
-		"cms-sign",
-		"openssl"
-	],
-	"author": "Walaff Fernandes",
-	"license": "ISC",
-  "homepage": "https://github.com/Pyxlab/cms_sign#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Pyxlab/cms_sign.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Pyxlab/cms_sign/issues"
-  },
-	"peerDependencies": {
-		"node-forge": "^1.2.1"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.8.3",
-		"@swc/core": "^1.6.13",
-		"@types/node": "^20.14.10",
-		"tsup": "^8.1.0",
-		"typescript": "^5.5.3"
-	}
+    "name": "@pyxlab/cms_sign",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {},
+    "keywords": [
+        "typescript",
+        "node-forge",
+        "cms-sign",
+        "openssl"
+    ],
+    "author": "Walaff Fernandes",
+    "license": "ISC",
+    "homepage": "https://github.com/Pyxlab/cms_sign#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Pyxlab/cms_sign.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Pyxlab/cms_sign/issues"
+    },
+    "peerDependencies": {
+        "node-forge": "^1.2.1"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.8.3",
+        "@swc/core": "^1.6.13",
+        "@types/adm-zip": "^0.5.5",
+        "@types/node": "^20.14.10",
+        "@types/node-forge": "^1.2.1",
+        "tsup": "^8.1.0",
+        "typescript": "^5.5.3"
+    },
+    "dependencies": {
+        "adm-zip": "^0.5.14"
+    }
 }
