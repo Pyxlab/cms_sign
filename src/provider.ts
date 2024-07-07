@@ -4,12 +4,34 @@ import forge from "node-forge";
 import errors from "./errors/index.js";
 import { SignatureEntity } from "./signature.js";
 
+/**
+ * SignatureProvider class for signing data using a private key and certificate.
+ */
 export class SignatureProvider {
+    /**
+     * The data to be signed.
+     */
     readonly #data: Buffer;
+    /**
+     * The private key used for signing.
+     */
     readonly #privateKey: forge.pki.rsa.PrivateKey;
+    /**
+     * The certificate associated with the private key.
+     */
     readonly #certificate: forge.pki.Certificate;
+    /**
+     * The end-of-line character sequence used in the data.
+     */
     readonly #eol: "/r/n" | "/n";
 
+    /**
+     * Creates a new SignatureProvider instance.
+     * @param data The data to be signed.
+     * @param signature The signature buffer.
+     * @param passphrase The passphrase for the private key.
+     * @param end_of_line The end-of-line character sequence used in the data. Default is "LF".
+     */
     constructor(
         data: Buffer,
         signature: Buffer,
@@ -28,6 +50,10 @@ export class SignatureProvider {
         this.#certificate = certificate;
     }
 
+    /**
+     * Signs the data and returns the signature entity.
+     * @returns The signature entity containing the signed data and signature.
+     */
     public sign(): SignatureEntity {
         const lines = this.#data.toString("utf-8").split(this.#eol);
         const checksums = lines.map(this.calculateChecksum);
@@ -79,6 +105,14 @@ export class SignatureProvider {
         return new SignatureEntity(data, signature);
     }
 
+    /**
+     * Unpacks the P12 signature and returns the private key and certificate.
+     * @param signature The signature buffer.
+     * @param passphrase The passphrase for the private key.
+     * @returns An object containing the private key and certificate.
+     * @throws {errors.PRIVATEKEY_EXTRACTION_FAILED} If the private key extraction fails.
+     * @throws {errors.CERTIFICATE_EXTRACTION_FAILED} If the certificate extraction fails.
+     */
     private static unpackP12(signature: Buffer, passphrase: string) {
         const p12Asn1 = forge.asn1.fromDer(signature.toString("binary"));
         const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, false, passphrase);
@@ -111,6 +145,11 @@ export class SignatureProvider {
         };
     }
 
+    /**
+     * Calculates the checksum for a given line of text.
+     * @param line The line of text.
+     * @returns The calculated checksum.
+     */
     private calculateChecksum(line: string): string {
         return crypto.createHash("sha256").update(line, "utf8").digest("hex");
     }
