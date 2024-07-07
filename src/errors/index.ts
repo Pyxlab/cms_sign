@@ -4,6 +4,7 @@ import { FilepathNotDefinedError } from "./filepath_not_defined.error.js";
 import { PrivateKeyNotFoundError } from "./privatekey_not_found.error.js";
 import { DataNotProvidedError } from "./data_not_provided.error.js";
 import { SignatureNotProvidedError } from "./signature_not_provided.error.js";
+import { PrivateKeyExtractionFailedError } from "./privatekey_extraction_failed.error.js";
 
 const errors = {
     CERT_NOT_FOUND: CertificateNotFoundError,
@@ -12,6 +13,7 @@ const errors = {
     FILENAME_NOT_DEFINED: FilenameNotDefinedError,
     DATA_NOT_PROVIDED: DataNotProvidedError,
     SIGNATURE_NOT_PROVIDED: SignatureNotProvidedError,
+    PRIVATEKEY_EXTRACTION_FAILED: PrivateKeyExtractionFailedError,
 } as const;
 
 export default errors;
