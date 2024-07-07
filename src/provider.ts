@@ -36,14 +36,14 @@ export class SignatureProvider {
         data: Buffer,
         signature: Buffer,
         passphrase: string,
-        end_of_line: "LF" | "CRLF" = "LF"
+        end_of_line: "LF" | "CRLF" = "LF",
     ) {
         this.#data = data;
         this.#eol = end_of_line === "LF" ? "/n" : "/r/n";
 
         const { privateKey, certificate } = SignatureProvider.unpackP12(
             signature,
-            passphrase
+            passphrase,
         );
 
         this.#privateKey = privateKey;
@@ -68,7 +68,7 @@ export class SignatureProvider {
         const p7 = forge.pkcs7.createSignedData();
         p7.content = forge.util.createBuffer(
             signedChecksums.join(this.#eol),
-            "utf8"
+            "utf8",
         );
         p7.addCertificate(this.#certificate);
         p7.addSigner({
@@ -83,7 +83,7 @@ export class SignatureProvider {
                 {
                     type: forge.pki.oids.messageDigest,
                     value: forge.util.encode64(
-                        forge.md.sha256.create().digest().getBytes()
+                        forge.md.sha256.create().digest().getBytes(),
                     ),
                 },
                 {
