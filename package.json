@@ -2,7 +2,11 @@
     "name": "@pyxlab/cms_sign",
     "version": "1.0.0",
     "description": "",
-    "scripts": {},
+    "type": "module",
+    "scripts": {
+        "test": "vitest",
+        "build": "tsup"
+    },
     "keywords": [
         "typescript",
         "node-forge",
@@ -32,6 +36,7 @@
         "typescript": "^5.5.3"
     },
     "dependencies": {
-        "adm-zip": "^0.5.14"
+        "adm-zip": "^0.5.14",
+        "vitest": "^1.6.0"
     }
 }
