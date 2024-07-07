@@ -1,2 +1,9 @@
 .vscode
+.output
 node_modules
+*.pfx
+*.p12
+*.key
+*.pem
+*.crt
+*.csr
