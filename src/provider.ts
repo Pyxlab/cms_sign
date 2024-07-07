@@ -121,7 +121,7 @@ export class SignatureProvider {
             bagType: forge.pki.oids.pkcs8ShroudedKeyBag,
         });
 
-        const keyObj = keyBags[forge.pki.oids.pkcs8ShroudedKeyBag]![0];
+        const keyObj = keyBags[forge.pki.oids.pkcs8ShroudedKeyBag]?.[0];
 
         if (!keyObj || !keyObj.key) {
             throw new errors.PRIVATEKEY_EXTRACTION_FAILED();
@@ -131,7 +131,7 @@ export class SignatureProvider {
         const privateKey = forge.pki.privateKeyFromPem(pkiKey);
 
         const certBags = p12.getBags({ bagType: forge.pki.oids.certBag });
-        const certObj = certBags[forge.pki.oids.certBag]![0];
+        const certObj = certBags[forge.pki.oids.certBag]?.[0];
 
         if (!certObj || !certObj.cert) {
             throw new errors.CERTIFICATE_EXTRACTION_FAILED();
