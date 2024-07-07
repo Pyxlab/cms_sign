@@ -25,21 +25,13 @@ export class SignatureEntityBuilder {
         this.#signature = signature;
     }
 
-    public get data(): Buffer {
-        return this.#data;
-    }
-
-    public get signature(): Buffer {
-        return this.#signature;
-    }
-
     public setCompression(compression: boolean): this {
         this.#compression = compression;
 
         return this;
     }
 
-    public setFilepath(directory: string): this {
+    public setOutputPath(directory: string): this {
         this.#filePath = directory;
 
         return this;
@@ -68,8 +60,8 @@ export class SignatureEntityBuilder {
         if (this.#compression) {
             const zip = new AdmZip();
 
-            await writeFile(txt, this.data);
-            await writeFile(p7s, this.signature);
+            await writeFile(txt, this.#data);
+            await writeFile(p7s, this.#signature);
 
             zip.addLocalFolder(directory);
             await zip.writeZipPromise(directory.concat(".zip"));
@@ -79,8 +71,8 @@ export class SignatureEntityBuilder {
             return directory.concat(".zip");
         }
 
-        await writeFile(txt, this.data);
-        await writeFile(p7s, this.signature);
+        await writeFile(txt, this.#data);
+        await writeFile(p7s, this.#signature);
 
         return directory;
     }
@@ -105,12 +97,16 @@ export class SignatureEntityBuilder {
 }
 
 export class SignatureEntity implements ISignatureEntity {
+    readonly #builder: SignatureEntityBuilder;
+
     constructor(
         public readonly data: Buffer,
         public readonly signature: Buffer
-    ) {}
+    ) {
+        this.#builder = new SignatureEntityBuilder(data, signature);
+    }
 
     public get builder(): SignatureEntityBuilder {
-        return new SignatureEntityBuilder(this.data, this.signature);
+        return this.#builder;
     }
 }
