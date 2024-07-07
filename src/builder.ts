@@ -1,6 +1,6 @@
-import { SignatureProvider } from "./provider.js";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { SignatureProvider } from "./provider.js";
 
 /**
  * SignatureBuilder class for building signatures.
@@ -12,7 +12,7 @@ export class SignatureBuilder {
     #passphrase: string | null = null;
     #outputPath: string | null = null;
     #filename: string | null = null;
-    #compression: boolean = false;
+    #compression = false;
 
     /**
      * Sets the data buffer for the signature builder.
@@ -112,7 +112,7 @@ export class SignatureBuilder {
         const provider = new SignatureProvider(
             this.#data,
             signatureFile,
-            this.#passphrase
+            this.#passphrase,
         );
 
         const signature = provider.sign();
