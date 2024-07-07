@@ -19,7 +19,7 @@ export class SignatureProvider {
         this.#data = data;
         this.#eol = end_of_line === "LF" ? "/n" : "/r/n";
 
-        const { privateKey, certificate } = SignatureProvider.parseSignature(
+        const { privateKey, certificate } = SignatureProvider.unpackP12(
             signature,
             passphrase
         );
@@ -79,7 +79,7 @@ export class SignatureProvider {
         return new SignatureEntity(data, signature);
     }
 
-    private static parseSignature(signature: Buffer, passphrase: string) {
+    private static unpackP12(signature: Buffer, passphrase: string) {
         const p12Asn1 = forge.asn1.fromDer(signature.toString("binary"));
         const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, false, passphrase);
 
@@ -89,19 +89,25 @@ export class SignatureProvider {
 
         const keyObj = keyBags[forge.pki.oids.pkcs8ShroudedKeyBag]![0];
 
+        if (!keyObj || !keyObj.key) {
+            throw new errors.PRIVATEKEY_EXTRACTION_FAILED();
+        }
+
+        const pkiKey = forge.pki.privateKeyToPem(keyObj.key);
+        const privateKey = forge.pki.privateKeyFromPem(pkiKey);
+
         const certBags = p12.getBags({ bagType: forge.pki.oids.certBag });
         const certObj = certBags[forge.pki.oids.certBag]![0];
 
-        if (!keyObj || !keyObj.key) {
-            throw new Error("Private key not found in the PKCS#12 archive.");
+        if (!certObj || !certObj.cert) {
+            throw new errors.CERTIFICATE_EXTRACTION_FAILED();
         }
 
-        const privateKey = keyObj.key;
         const certificate = certObj.cert;
 
         return {
-            privateKey: privateKey as forge.pki.rsa.PrivateKey,
-            certificate: certificate!,
+            privateKey,
+            certificate,
         };
     }
 
