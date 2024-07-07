@@ -1,0 +1,44 @@
+name: checks
+on:
+    - push
+    - pull_request
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 8
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+            - run: pnpm install
+            - run: pnpm run test
+    typecheck:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 8
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+            - run: pnpm install
+            - run: pnpm run typecheck
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 8
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+            - run: pnpm install
+            - run: pnpm run lint
